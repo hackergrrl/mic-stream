@@ -1,6 +1,7 @@
 var spawn = require('child_process').spawn
 var os = require('os')
 var Through = require('audio-through')
+var pump = require('pump')
 
 module.exports = function (outputFormat) {
 
@@ -32,9 +33,7 @@ module.exports = function (outputFormat) {
 
   stream.pipe(through)
 
-  // TODO: handle errors
-
-  return through
+  return pump(stream, through)
 }
 
 function nodeMicStream () {
