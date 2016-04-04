@@ -12,8 +12,8 @@ module.exports = function (outputFormat) {
     byteOrder: os.endianness instanceof Function ? os.endianness() : 'LE',
     channels: 2,
     sampleRate: 44100,
-    interleaved: false,
-    samplesPerFrame: 44100,
+    interleaved: true,
+    samplesPerFrame: 1024,
     sampleSize: 2,
     id: 'S_16_LE_2_44100_I',
     max: 32678,
@@ -37,16 +37,10 @@ module.exports = function (outputFormat) {
 }
 
 function nodeMicStream () {
-  var args = [
-    '-r',
-    '44100',
-    '-t',
-    's16',
-    '-c',
-    '2',
-    '-'
-  ]
-  return spawn('rec', args).stdout
+  // var args = '-t s16 -c 1 -r 44100 -'.split(' ')
+  // return spawn('rec', args).stdout
+  var args = '-c 2 -r 44100 -f S16_LE --buffer-size=16384'.split(' ')
+  return spawn('arecord', args).stdout
 }
 
 function browserMicStream () {
