@@ -1,10 +1,12 @@
 # mic-stream
 
-> Get a stream of audio data from the microphone on the browser or with Node!
+> Get a stream of audio data from the microphone.
 
 ## wip disclaimer
 
 **Still TODO**: browser support!
+[microphone-stream](https://github.com/saebekassebil/microphone-stream) ought to
+do the trick.
 
 ## support
 
