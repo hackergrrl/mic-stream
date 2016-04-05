@@ -1,6 +1,6 @@
 {
   "name": "mic-stream",
-  "description": "Get an audio stream from your microphone -- browser or node!",
+  "description": "Get an audio stream from your microphone!",
   "version": "0.0.1",
   "repository": {
     "url": "git://github.com/noffle/mic-stream.git"
