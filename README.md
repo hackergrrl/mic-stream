@@ -2,16 +2,26 @@
 
 > Get a stream of audio data from the microphone on the browser or with Node!
 
-## background
+## wip disclaimer
 
-I was developing a streaming version of
-[goertzel](https://github.com/noffle/goertzel) for frequency detection, but
-alas: I could not find a streaming microphone module that supported both Node
-and the browser. So: I wrote one.
+**Still TODO**: browser support!
+
+## support
+
+|         | Node | Browser |
+|---------|------|---------|
+| Windows |  NO    |  NO |
+| Linux   |  *YES*\* |  NO |
+| OS X    |  NO    |  NO |
+
+\* requires `alsa-utils` to be installed.
+
+Like to see your platform supported? Take a look at the source and consider
+submitting a PR!
 
 ## example
 
-Let's pipe our microphone input back to our speakers: feedback loop fun!
+Let's pipe our microphone input back to our speakers: feedback loop!
 
 ```js
 var mic = require('mic-stream')
