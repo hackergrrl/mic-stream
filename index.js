@@ -1,7 +1,11 @@
 var spawn = require('child_process').spawn
 var os = require('os')
 var Through = require('audio-through')
-var pump = require('pump')
+var os = require('os')
+
+if (os.type() == 'Darwin' || os.type().indexOf('Windows') > -1) {
+  throw new Error('Only linux is supported with Node -- alas! Please file a PR!')
+}
 
 module.exports = function (outputFormat) {
 
@@ -26,19 +30,12 @@ module.exports = function (outputFormat) {
   // TODO: use web/node based on detection
   var stream = nodeMicStream()
 
-  var through = new Through(
-    inputFormat,
-    outputFormat
-  );
+  var through = new Through()
 
-  stream.pipe(through)
-
-  return pump(stream, through)
+  return stream.pipe(through)
 }
 
 function nodeMicStream () {
-  // var args = '-t s16 -c 1 -r 44100 -'.split(' ')
-  // return spawn('rec', args).stdout
   var args = '-c 2 -r 44100 -f S16_LE --buffer-size=16384'.split(' ')
   return spawn('arecord', args).stdout
 }
