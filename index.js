@@ -31,13 +31,23 @@ module.exports = function (outputFormat) {
   var stream = nodeMicStream()
 
   var through = new Through()
+  through.stop = stream.stop
 
   return stream.pipe(through)
 }
 
 function nodeMicStream () {
   var args = '-c 2 -r 44100 -f S16_LE --buffer-size=16384'.split(' ')
-  return spawn('arecord', args).stdout
+  var p = spawn('arecord', args)
+
+  // XXX: gratuitous hack to let the API user kill the mic process. PRs that
+  // make this nicer & more stream-like are very welcome!
+  p.stdout.originalProcess = p
+  p.stdout.stop = function () {
+    p.kill()
+  }
+
+  return p.stdout
 }
 
 function browserMicStream () {
