@@ -6,6 +6,9 @@
     "url": "git://github.com/noffle/mic-stream.git"
   },
   "main": "index.js",
+  "engine": {
+    "node": ">= 4"
+  },
   "scripts": {
     "test": "node test.js",
     "lint": "standard",
