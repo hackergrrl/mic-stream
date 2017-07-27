@@ -2,7 +2,7 @@ var spawn = require('child_process').spawn
 var os = require('os')
 var Through = require('audio-through')
 
-if (os.type() === 'Darwin' || os.type().indexOf('Windows') > -1) {
+if (process.platform !== 'linux') {
   throw new Error('Only linux is supported with Node -- alas! Please file a PR!')
 }
 
