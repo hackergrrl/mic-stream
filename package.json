@@ -7,12 +7,15 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "standard"
+    "test": "node test.js",
+    "lint": "standard",
+    "prepublishOnly": "npm run lint && npm test"
   },
   "dependencies": {
     "audio-through": "^1.1.3"
   },
   "devDependencies": {
+    "is-stream": "^1.1.0",
     "standard": "^6.0.0"
   }
 }
