@@ -1,7 +1,7 @@
 {
   "name": "mic-stream",
   "description": "Get an audio stream from your microphone!",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "url": "git://github.com/noffle/mic-stream.git"
   },
