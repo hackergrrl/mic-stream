@@ -12,11 +12,12 @@ do the trick.
 
 |         | Node | Browser |
 |---------|------|---------|
-| Windows |  NO    |  NO |
-| Linux   |  *YES*\* |  NO |
-| OS X    |  NO    |  NO |
+| Windows | NO   | NO      |
+| Linux   | *YES*¹ | NO    |
+| macOS   | *YES*² | NO    |
 
-\* requires `alsa-utils` to be installed.
+¹ requires `alsa-utils` to be installed.
+² requires [`rec` from *sox*](http://sox.sourceforge.net/) to be installed.
 
 Like to see your platform supported? Take a look at the source and consider
 submitting a PR!
