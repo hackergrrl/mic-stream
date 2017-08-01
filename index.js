@@ -2,10 +2,6 @@ var spawn = require('child_process').spawn
 var os = require('os')
 var Through = require('audio-through')
 
-if (process.platform !== 'linux') {
-  throw new Error('Only linux is supported with Node -- alas! Please file a PR!')
-}
-
 module.exports = function micStream (outputFormat) {
   var inputFormat = {
     signed: true,
@@ -25,9 +21,7 @@ module.exports = function micStream (outputFormat) {
 
   outputFormat = outputFormat || inputFormat
 
-  // TODO: use web/node based on detection
-  var p = nodeMicProcess()
-
+  var p = micProcess()
   var through = new Through()
   var res = p.stdout.pipe(through)
 
@@ -50,11 +44,33 @@ module.exports = function micStream (outputFormat) {
   return res
 }
 
-function nodeMicProcess () {
-  var args = '-c 2 -r 44100 -f S16_LE --buffer-size=16384'.split(' ')
-  return spawn('arecord', args)
+if (process.browser) {
+  // todo: use saebekassebil/microphone-stream or merge with ahdinosaur/read-audio
+  function micProcess () {
+    throw new Error('not implemented')
+  }
+} else if (process.platform === 'linux') {
+  function micProcess () {
+    return spawn('arecord', [
+      '-c', '2', // 2 channels
+      '-r', '44100', // 44100Hz sample rate
+      '-f', 'S16_LE', // little endian 16 bit
+      '--buffer-size=16384'
+    ])
+  }
+} else if (process.platform === 'darwin') {
+  function micProcess () {
+    return spawn('rec', [ // see http://sox.sourceforge.net
+      '-q', // don't show stats
+      '-t', 'raw', // record as PCM
+      '-c', '2', // 2 channels
+      '-r', '44100', // 44100Hz sample rate
+      '-b', '16', // little endian 16 bit
+      '-' // write audio to stdout
+    ])
+  }
+} else {
+  function micProcess () {
+    throw new Error('mic-stream does not support ' + process.platform + '.')
+  }
 }
-
-// function browserMicStream () {
-//   throw new Error('not implemented')
-// }
