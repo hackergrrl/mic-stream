@@ -15,6 +15,7 @@ do the trick.
 | Windows | NO   | NO      |
 | Linux   | *YES*¹ | NO    |
 | macOS   | *YES*² | NO    |
+| *BSD    | NO   | NO      |
 
 ¹ requires `alsa-utils` to be installed.
 ² requires [`rec` from *sox*](http://sox.sourceforge.net/) to be installed.
