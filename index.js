@@ -26,16 +26,21 @@ module.exports = function (outputFormat) {
   outputFormat = outputFormat || inputFormat
 
   // TODO: use web/node based on detection
-  var stream = nodeMicStream()
+  var p = nodeMicProcess()
 
   var through = new Through()
 
-  return stream.pipe(through)
+  var res = p.stdout.pipe(through)
+  res.stop = function (cb) {
+    p.kill('SIGTERM')
+    p.once('exit', cb)
+  }
+  return res
 }
 
-function nodeMicStream () {
+function nodeMicProcess () {
   var args = '-c 2 -r 44100 -f S16_LE --buffer-size=16384'.split(' ')
-  return spawn('arecord', args).stdout
+  return spawn('arecord', args)
 }
 
 // function browserMicStream () {
