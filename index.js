@@ -44,22 +44,18 @@ module.exports = function micStream (outputFormat) {
   return res
 }
 
-if (process.browser) {
-  // todo: use saebekassebil/microphone-stream or merge with ahdinosaur/read-audio
-  function micProcess () {
+function micProcess () {
+  if (process.browser) {
+    // todo: use saebekassebil/microphone-stream or merge with ahdinosaur/read-audio
     throw new Error('not implemented')
-  }
-} else if (process.platform === 'linux') {
-  function micProcess () {
+  } else if (process.platform === 'linux') {
     return spawn('arecord', [
       '-c', '2', // 2 channels
       '-r', '44100', // 44100Hz sample rate
       '-f', 'S16_LE', // little endian 16 bit
       '--buffer-size=16384'
     ])
-  }
-} else if (process.platform === 'darwin') {
-  function micProcess () {
+  } else if (process.platform === 'darwin') {
     return spawn('rec', [ // see http://sox.sourceforge.net
       '-q', // don't show stats
       '-t', 'raw', // record as PCM
@@ -68,9 +64,7 @@ if (process.browser) {
       '-b', '16', // little endian 16 bit
       '-' // write audio to stdout
     ])
-  }
-} else {
-  function micProcess () {
+  } else {
     throw new Error('mic-stream does not support ' + process.platform + '.')
   }
 }
