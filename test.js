@@ -13,6 +13,7 @@ test('can start, is a stream, can stop', function (t) {
   s.stop(function () {
     t.ok(true)
   })
+  s.on('error', t.ifError)
 })
 
 test('emits AudioBuffer objects', function (t) {
@@ -27,4 +28,5 @@ test('emits AudioBuffer objects', function (t) {
       t.ok(true)
     })
   })
+  s.on('error', t.ifError)
 })

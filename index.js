@@ -6,7 +6,7 @@ if (process.platform !== 'linux') {
   throw new Error('Only linux is supported with Node -- alas! Please file a PR!')
 }
 
-module.exports = function (outputFormat) {
+module.exports = function micStream (outputFormat) {
   var inputFormat = {
     signed: true,
     float: false,
@@ -29,12 +29,24 @@ module.exports = function (outputFormat) {
   var p = nodeMicProcess()
 
   var through = new Through()
-
   var res = p.stdout.pipe(through)
-  res.stop = function (cb) {
+
+  var killed = false
+  res.stop = function stop (cb) {
+    killed = true
     p.kill('SIGTERM')
     p.once('exit', cb)
   }
+
+  p.once('exit', function onStop (code) {
+    if (!killed && code !== 0) {
+      p.emit('error', new Error('Recorder exited with ' + code + '.'))
+    } else {
+      p.stdout.unpipe(through)
+    }
+    through.end()
+  })
+
   return res
 }
 
