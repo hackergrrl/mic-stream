@@ -67,6 +67,10 @@ takes a wide variety of parameters. These are defaults:
 The returned `stream` can be treated like a regular Node stream and piped
 where ever you'd like.
 
+### stream.stop(cb)
+
+Stops the microphone stream. `cb` is called when the process is fully stopped.
+
 ## install
 
 With [`npm`](http://npmjs.org/), run
