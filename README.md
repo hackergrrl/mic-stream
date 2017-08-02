@@ -2,9 +2,12 @@
 
 > Get a stream of audio data from the microphone.
 
+[![npm version](https://img.shields.io/npm/v/mic-stream.svg)](https://www.npmjs.com/package/mic-stream)
+![ISC-licensed](https://img.shields.io/github/license/noffle/mic-stream.svg)
+
 ## wip disclaimer
 
-**Still TODO**: browser support!
+**Still TODO**: browser support (see #9)!
 [microphone-stream](https://github.com/saebekassebil/microphone-stream) ought to
 do the trick.
 
