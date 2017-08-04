@@ -22,7 +22,8 @@
     "prepublishOnly": "npm run lint && npm test"
   },
   "dependencies": {
-    "audio-through": "^2.2.3"
+    "audio-through": "^2.2.3",
+    "ndsamples": "^1.0.0"
   },
   "devDependencies": {
     "is-stream": "^1.1.0",
