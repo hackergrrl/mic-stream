@@ -5,7 +5,14 @@
   "repository": {
     "url": "git://github.com/noffle/mic-stream.git"
   },
-  "main": "index.js",
+  "main": "./index.js",
+  "browser": "./index.browser.js",
+  "files": [
+    "index.js",
+    "index.node.js",
+    "index.browser.js",
+    "lib"
+  ],
   "engine": {
     "node": ">= 4"
   },
