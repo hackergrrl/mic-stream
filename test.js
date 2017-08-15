@@ -11,7 +11,7 @@ test('can start, is a stream, can stop', function (t) {
   var s = micStream()
   t.ok(isStream.readable(s), 'returns a readable stream')
   s.stop(function () {
-    t.ok(true)
+    t.ok(true, 'stopped')
   })
   s.on('error', t.ifError)
 })
