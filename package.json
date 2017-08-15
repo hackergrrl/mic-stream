@@ -24,6 +24,7 @@
   "dependencies": {
     "audio-context": "^1.0.1",
     "audio-through": "^2.2.3",
+    "get-user-media-promise": "^1.1.1",
     "ndsamples": "^1.0.0"
   },
   "devDependencies": {
