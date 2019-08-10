@@ -5,7 +5,15 @@
   "repository": {
     "url": "git://github.com/noffle/mic-stream.git"
   },
-  "main": "index.js",
+  "main": "./index.js",
+  "browser": "./index.browser.js",
+  "files": [
+    "index.js",
+    "index.node.js",
+    "index.browser.js",
+    "lib",
+    "example"
+  ],
   "engine": {
     "node": ">= 4"
   },
@@ -15,10 +23,15 @@
     "prepublishOnly": "npm run lint && npm test"
   },
   "dependencies": {
-    "audio-through": "^2.2.3"
+    "audio-context": "^1.0.1",
+    "audio-through": "^2.2.3",
+    "get-user-media-promise": "^1.1.1",
+    "ndsamples": "^1.0.0",
+    "sox-static": "^1.0.0"
   },
   "devDependencies": {
     "is-stream": "^1.1.0",
+    "speaker": "^0.4.1",
     "standard": "^6.0.0",
     "tape": "^4.8.0"
   }
