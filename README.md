@@ -2,6 +2,11 @@
 
 > Get a stream of audio data from the microphone.
 
+---
+## Unmaintained
+This module is old and doesn't seem to work any longer, and I don't have capacity / interest in maintaining it. Please consider using [node-record-lpcm16](https://github.com/gillesdemey/node-record-lpcm16/) instead.
+---
+
 [![npm version](https://img.shields.io/npm/v/mic-stream.svg)](https://www.npmjs.com/package/mic-stream)
 ![ISC-licensed](https://img.shields.io/github/license/noffle/mic-stream.svg)
 
